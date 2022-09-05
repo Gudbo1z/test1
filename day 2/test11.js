@@ -11,8 +11,7 @@ function generateFibonaciList(){
 }
 
 function hasFibonaciNumber(numberList){
-    const concatArrays = [...numberList, ...generateFibonaciList()]
-    const set = new Set([...concatArrays])
+    const set = new Set([...numberList, ...generateFibonaciList()])
     return (concatArrays.length != set.size+1)
 }
 console.log(hasFibonaciNumber([4,6,7]))

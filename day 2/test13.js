@@ -8,4 +8,4 @@ function findLastPerfectSquare(numberList){
     return perfectSquare
 }
 
-console.log(findLastPerfectSquare([2,3,5]))
+console.log(findLastPerfectSquare([25,2,3,5,4]))

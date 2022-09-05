@@ -1,6 +1,5 @@
 function countNumberNotInB(a, b){
-    const concatArrays = [...a, ...b]
-    const set = new Set([...concatArrays])
+    const set = new Set([...a, ...b])
     return (a.length - (concatArrays.length - set.size))
 }
 

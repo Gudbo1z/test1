@@ -1,11 +1,10 @@
 function isIncreasingNumber(n){
     if(n >= 10){
         let convertToString = n.toString()
-        let condition = true
         for(let i = 0; i < convertToString.length; i++){
-            if(convertToString[i+1] && convertToString[i] > convertToString[i+1]) condition = false
+            if(convertToString[i+1] && convertToString[i] > convertToString[i+1]) return false
         }
-        return condition
+        return true
     }
     else console.log('wrong input')
 }
