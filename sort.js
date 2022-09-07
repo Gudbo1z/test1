@@ -1,13 +1,12 @@
 Array.prototype.sortCus = function(callback){
     let array = [...this]
     let result = []
-    let current = 0
     if(callback){
         for(let i = 0; i < array.length; i++){
             let min = array[i]
             let index = 0
             for(let j = 0; j < array.length; j++){
-                if(callback(min, array[j]) > 0 && array[j] > current){
+                if(callback(min, array[j]) > 0){
                     min = array[j]
                     index = j
                 }
@@ -16,21 +15,20 @@ Array.prototype.sortCus = function(callback){
             i -= 1
             result = [...result, min]
         }
+        return result
     }
-    else {
-        for(let i = 0; i < array.length; i++){
-            let min = array[i].toString()
-            let index = 0
-            for(let j = 0; j < array.length; j++){
-                if(min > array[j].toString() && array[j] > current){
-                    min = array[j].toString()
-                    index = j
-                }
+    for(let i = 0; i < array.length; i++){
+        let min = array[i].toString()
+        let index = 0
+        for(let j = 0; j < array.length; j++){
+            if(min > array[j].toString() && array[j] > current){
+                min = array[j].toString()
+                index = j
             }
-            array.splice(index, 1)
-            i -= 1
-            result = [...result, parseInt(min)]
         }
+        array.splice(index, 1)
+        i -= 1
+        result = [...result, parseInt(min)]
     }
     return result
 }
