@@ -6,9 +6,7 @@ Array.prototype.flatCus = function(depth){
             subtract -= 1
             array = [...array, ...this[i].flatCus(subtract)]
         }
-        else {
-            array = [...array, this[i]]
-        }
+        else array = [...array, this[i]]
     }
     return array
 }
