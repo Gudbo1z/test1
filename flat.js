@@ -11,5 +11,4 @@ Array.prototype.flatCus = function(depth){
     return array
 }
 
-console.log([1, 2, [3, [4]]].flatCus(2))
-// console.log([3,[4]].flatCus(-1))
+console.log([1, 2, [3, [4]]].flatCus(1))

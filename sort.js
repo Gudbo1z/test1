@@ -34,5 +34,5 @@ Array.prototype.sortCus = function(callback){
     }
     return result
 }
-console.log([8,8,2,1,9,4,5,11111].sortCus((a,b) => a-b))
-console.log([8,8,2,1,9,4,5,11111].sort((a,b)=> a-b))
+console.log([8,8,2,1,9,4,5,11111, -1].sortCus((a,b) => a-b))
+console.log([8,8,2,1,9,4,5,11111, -1].sort((a,b)=> a-b))
