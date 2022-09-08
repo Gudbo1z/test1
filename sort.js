@@ -17,6 +17,15 @@ Array.prototype.sortCus = function(callback){
         }
         return result
     }
+    result = sortString()
+    return result
+}
+
+console.log([8,8,2,1,9,4,5,11111, -1].sortCus((a,b) => b-a))
+console.log([8,8,2,1,9,4,5,11111, -1].sort((a,b)=> a-b))
+
+function sortString(){
+    let result = []
     for(let i = 0; i < array.length; i++){
         let min = array[i].toString()
         let index = 0
@@ -32,5 +41,3 @@ Array.prototype.sortCus = function(callback){
     }
     return result
 }
-console.log([8,8,2,1,9,4,5,11111, -1].sortCus((a,b) => b-a))
-console.log([8,8,2,1,9,4,5,11111, -1].sort((a,b)=> a-b))
