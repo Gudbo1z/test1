@@ -1,9 +1,10 @@
 Array.prototype.flatCus = function(depth){
     let array = []
-    let subtract = (depth == 0 || depth)? depth : 1
+    let subtract = (depth != undefined)? depth : 1
     for(let i = 0; i < this.length; i++){
         if(this[i].length && subtract > 0) {
             subtract -= 1
+            if(this.every(item => !Array.isArray(item))) break
             array = [...array, ...this[i].flatCus(subtract)]
         }
         else array = [...array, this[i]]
@@ -11,4 +12,4 @@ Array.prototype.flatCus = function(depth){
     return array
 }
 
-console.log([1, 2, [3, [4]]].flatCus(1))
+console.log([0, 1, 2, [[[3, 4]]], [[[[1,2,3]]]]].flatCus(Infinity))

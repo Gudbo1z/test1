@@ -16,4 +16,5 @@ Array.prototype.reduceCus = function(callback, initialValue){
 
 console.log([3,4,5].reduceCus((a,b)=>a+b))
 console.log([3,4,5].reduceCus((a,b)=>a+b,''))
-console.log([3,4,5].reduce((a,b)=>a*b,''))
+console.log([3,4,5].reduce((a,b)=>a+b,''))
+console.log('' == false)
