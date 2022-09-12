@@ -1,0 +1,24 @@
+const example = ['swift','rust','javascript','react','rx','ruby','rails','php','objective-c','html','CSS','pug']
+
+function getApi(example){
+    if(example.length){
+        let keywords = example
+        let apis = keywords.slice(0,5).map(keyword => fetch(`https://api.github.com/search/repositories?q=${keyword}`))
+        Promise.allSettled(apis)
+        .then(responses => {
+            console.log(responses[0])
+            let newKeywords = keywords
+            responses.forEach(response => {
+                if(response.status === 'fulfilled'){
+                    let url = response.value.url
+                    let key = url.slice(url.indexOf('=')+1)
+                    newKeywords = newKeywords.filter(keyword => keyword !== key)
+                }
+            })
+            return newKeywords
+        })
+        .then(responses => getApi(responses))
+    }   
+}
+
+getApi(example)
