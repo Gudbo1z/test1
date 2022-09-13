@@ -1,6 +1,9 @@
 function countNumberNotInB(a, b){
-    const set = new Set([...a, ...b])
-    return (a.length - (concatArrays.length - set.size))
+    let seen = 0
+    for(let i = 0; i < a.length; i++){
+        if(!b.includes(a[i])) seen += 1
+    }
+    return seen
 }
 
-console.log(countNumberNotInB([1,2,3], [1,2,3]))
+console.log(countNumberNotInB([1,2,3,4,5,5,5,5], [1,2,4,5,6,8,8,9,10]))
