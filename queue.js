@@ -2,7 +2,6 @@ class Queue {
     constructor (delay = 1000) {
         this.delay = delay
         this.callbackQueue = [()=>console.log('xin chao1'), ()=>console.log('xin chao2'), ()=>console.log('xin chao3')]
-        this.status = false
     }
     add(callback){
         callback(); // callback se luon thuc hien
