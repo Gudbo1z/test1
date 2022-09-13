@@ -6,7 +6,7 @@ function getApi(example){
         let apis = keywords.slice(0,5).map(keyword => fetch(`https://api.github.com/search/repositories?q=${keyword}`))
         Promise.allSettled(apis)
         .then(responses => {
-            console.log(responses[0])
+            responses[0].value.json().then(response => console.log(response.items? response.items[0] : 'khong thanh cong'))
             let newKeywords = keywords
             responses.forEach(response => {
                 if(response.status === 'fulfilled'){
