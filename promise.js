@@ -11,11 +11,11 @@ function getApi(example){
             .then(responses => {
                 responses.forEach((response, index) => {
                     if(response.status === 'fulfilled'){
-                        show.innerHTML += (keywords[index] + ' ')
+                        show.innerHTML += (example[index] + ' ')
                         console.log(response.value.json().then(res => console.log(res.items[0])))
                     }
                     if(response.status === 'rejected'){
-                        keywords.push(keywords[index])
+                        keywords.push(example[index])
                     }
                 })
                 return keywords
