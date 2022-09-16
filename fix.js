@@ -1,10 +1,10 @@
 const array = []
-for(let i = 1; i < 13; i++){
+for(let i = 1; i < 50; i++){
     array.push(i)
 }
   
   function run() {
-    const keywords = array.splice(0, 7);
+    const keywords = array.splice(0, 10);
     if (keywords.length <= 0) {
       return;
     }
@@ -13,16 +13,22 @@ for(let i = 1; i < 13; i++){
     );
     Promise.allSettled(promises)
       .then((responses) => {
+        let fulfilled = []
         responses.forEach((res, index) => {
           if (res.status === "fulfilled" && res.value.status === 200) {
-            res.value.json().then(res => console.log(res.title));
+            fulfilled.push(res)
           } else {
             array.push(keywords[index]);
           }
         });
-        return array
+        return fulfilled
       })
-      .then((rejected) => run(rejected));
+      .then((fulfilled) => {
+        fulfilled.forEach(ful => {
+          ful.value.json().then(res => console.log(res.title))
+        })
+      })
+      .then(() => run(array));
   }
   
   run();
