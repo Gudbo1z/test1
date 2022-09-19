@@ -12,11 +12,12 @@ function callbackDebounce(cb, delay){
 }
 
 function callbackThrottle(cb, delay){
-    let now = 0;
-    return() => {  
-        const time = new Date().getTime();
-        if(time - now >= delay){
-            now = time;
+    console.log(1)
+    let lastRun = delay;
+    return () => {
+        const now = new Date().getTime();
+        if(now - lastRun >= delay){
+            lastRun = now;
             cb;
         }
     }
