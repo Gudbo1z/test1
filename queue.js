@@ -1,9 +1,7 @@
 class Queue {
-    constructor(delay = 1000) {
+    constructor(delay = 10000) {
         this.delay = delay;
         this.callbackQueue = [];
-        this.result = []
-        this.done = false
     }
 
     add(callback) {
@@ -15,26 +13,17 @@ class Queue {
         }
     }
 
-    getResult() {
-        if(this.done) return this.result
-        setTimeout(()=>{
-            this.getResult()
-        }, this.delay)
-    }
-
     runcallback() {
         const callback = this.callbackQueue[0];
-        setTimeout(() => {
-            this.callbackQueue.shift();
-            if (this.callbackQueue.length > 0) {
-                this.runcallback();
-            }
-            if (this.callbackQueue.length === 0) {
-                this.done = true;
-            }
-        }, this.delay);
-
-        this.result.push(callback());
+        this.callbackQueue.shift();
+        if (this.callbackQueue.length > 0) {
+            let callback1 = this.callbackQueue[0]
+            return new Promise((res, rej) => {
+                setTimeout(()=>{
+                    res(callback1())
+                }, this.delay)
+            });
+        }
         return new Promise((res, rej) => res(callback()))
     }
 }
@@ -44,17 +33,10 @@ const cb2 = () => 2;
 const cb3 = () => 3;
 const cb4 = () => 4;
 
-const queue1 = new Queue(1500);
-// console.log(queue1.add(cb1))
-queue1.add(cb1);
-queue1.add(cb2);
-console.log(queue1.add(cb2))
-
-// let test = ()=>queue1.getResult()
-
-// function test(){
-//     console.log('hello')
-//     return 4
-// }
-// new Promise((res, rej)=>res(test()))
-// .then(res => console.log(res))
+const queue1 = new Queue(1000);
+let test1 = queue1.add(cb1);
+let test2 = queue1.add(cb2);
+let test3 = queue1.add(cb3);
+console.log(test1)
+console.log(test2)
+console.log(test3)
