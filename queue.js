@@ -13,15 +13,14 @@ class Queue {
     runcallback() {
         const callback = this.callbackQueue[this.current];
         if(this.callbackQueue.length > 1){
-            let callback1 = this.callbackQueue[this.current];
             this.current +=1
+            let callback1 = this.callbackQueue[this.current];
             return new Promise((res, rej)=>{
                 setTimeout(()=>{
                     res(callback1())
                 }, this.delay*this.current)
             })
         }
-        this.current +=1
         return new Promise((res, rej) => res(callback()))
     }
 }
@@ -31,7 +30,7 @@ const cb2 = () => 2;
 const cb3 = () => 3;
 const cb4 = () => 4;
 
-const queue1 = new Queue(3000);
+const queue1 = new Queue(2000);
 let test1 = queue1.add(cb1);
 let test2 = queue1.add(cb2);
 let test3 = queue1.add(cb3);
