@@ -35,7 +35,7 @@ class Queue {
         }, this.delay);
 
         this.result.push(callback());
-        return callback()
+        return new Promise((res, rej) => res(callback()))
     }
 }
 
@@ -45,19 +45,16 @@ const cb3 = () => 3;
 const cb4 = () => 4;
 
 const queue1 = new Queue(1500);
+// console.log(queue1.add(cb1))
 queue1.add(cb1);
 queue1.add(cb2);
-// const c = setTimeout(() => queue1.add(cb3), 5000)
-// setTimeout(() => queue1.add(cb4), 1000)
+console.log(queue1.add(cb2))
 
-// console.log(c)
-// setTimeout(()=>console.log(queue1.getResult()), 7000)
-// console.log(queue1.getResult())
-let test = ()=>queue1.getResult()
-// function test(name){
-//     console.log('xin chao '+name)
+// let test = ()=>queue1.getResult()
+
+// function test(){
+//     console.log('hello')
+//     return 4
 // }
-// (()=>{
-//     test('hoang anh')
-// })();
-// (()=>console.log('xin chao 2'))()
+// new Promise((res, rej)=>res(test()))
+// .then(res => console.log(res))
